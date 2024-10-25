@@ -12,15 +12,15 @@ interface TestData {
 }
 
 // Load test data from JSON file
-const testDataPath = path.resolve(__dirname, "data", "salary_insights.json");
+const testDataPath = path.resolve(__dirname, 'data', './salary_insights.json');
 let salaryTestData: TestData[];
 
 try {
-    const rawData = fs.readFileSync(testDataPath, "utf8");
-    salaryTestData = JSON.parse(rawData) as TestData[];
+  const rawData = fs.readFileSync(testDataPath, "utf8");
+  salaryTestData = JSON.parse(rawData) as TestData[];
 } catch (error) {
-    console.error("Error reading or parsing salary_insights.json:", error);
-    process.exit(1); //Exit the process with an error code
+  console.error("Error reading or parsing salary_insights.json:", error);
+  process.exit(1); // Exit the process with an error code
 }
 
 

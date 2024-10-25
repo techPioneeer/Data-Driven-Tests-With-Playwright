@@ -1,7 +1,0 @@
-[
-    { "role": "QA Engineer", "seniorty": "Senior", "country": "Canada", "currency": "USD" },
-    { "role": "Fullstack Engineer", "seniorty": "Junior", "country": "Brazil", "currency": "USD" },
-    { "role": "Devops Engineer", "seniorty": "Middle", "country": "United States", "currency": "USD" },
-    { "role": "Devops Engineer", "seniorty": "Senior", "country": "United Kingdom", "currency": "USD" }
-]
-
