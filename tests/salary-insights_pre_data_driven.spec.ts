@@ -1,17 +1,32 @@
 import { test, expect } from '@playwright/test';
-// const { webkit } = require('playwright');  // Or 'chromium' or 'firefox'.
+import * as fs from 'fs';
+import * as path from 'path';
 
-// Declare a JSON arry of test data
+//Define the type for the test data
+interface TestData {
+    role: string;
+    seniorty: string;
+    country: string;
+    currency: string;
 
-const testData = [
-    { role: "QA Engineer", seniorty: "Senior", country: "Canada", currency: "USD" },
-    { role: "Fullstack Engineer", seniorty: "Junior", country: "Brazil", currency: "USD" },
-    { role: "Devops Engineer", seniorty: "Middle", country: "United States", currency: "USD" },
-    { role: "Devops Engineer", seniorty: "Senior", country: "United Kingdom", currency: "USD" },
-];
+}
+
+// Load test data from JSON file
+const testDataPath = path.resolve(__dirname, "data", "salary_insights.json");
+let salaryTestData: TestData[];
+
+try {
+    const rawData = fs.readFileSync(testDataPath, "utf8");
+    salaryTestData = JSON.parse(rawData) as TestData[];
+} catch (error) {
+    console.error("Error reading or parsing salary_insights.json:", error);
+    process.exit(1); //Exit the process with an error code
+}
+
 
 test.describe('Salary Insights Tests Naive', () => {
-    testData.forEach(({ role, seniorty, country, currency }) => {
+    salaryTestData.forEach(({ role, seniorty, country, currency }) => {
+    // salaryTestData.forEach((data) => {
         test(`Should display correct compensation info for ${role} in ${seniorty} in ${country} in ${currency}`, async ({ page }) => {
             await page.goto("https://www.deel.com/pt/salary-insights");
 
@@ -42,6 +57,7 @@ test.describe('Salary Insights Tests Naive', () => {
             await page.locator('#idIframe').contentFrame().getByRole('button', { name: 'Search', exact: true }).click();
 
         });
+        
 
     });
 
