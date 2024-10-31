@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import * as fs from 'fs';
 import * as path from 'path';
 
-//Define the type for the test data
+// Define the type for the test data
 interface TestData {
     role: string;
     seniorty: string;
