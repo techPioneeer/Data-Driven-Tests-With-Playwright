@@ -13,7 +13,7 @@ interface TestData {
 }
 
 async function fetchTestData(): Promise<TestData[]> {
-  const baseUrl = 'https://8e461e41-9dbd-412d-b57b-1b18cd66eb8e.mock.pstmn.io'
+  const baseUrl = 'https://70f83e46-1117-4e4c-8e02-a89fb76752a1.mock.pstmn.io'
   const response = await axios.get(`${baseUrl}/test-data/salary-insights-data`);
   return response.data;
 }
@@ -29,6 +29,7 @@ test.describe('Dynamic Salary Insights Tests', () => {
     for (const { role, seniorty, country, currency } of testData) {
         await test.step(`Should display correct compensation info for ${role} in ${seniorty} in ${country} in ${currency}`, async () => {
         await page.goto("https://www.deel.com/pt/salary-insights");
+        await page.waitForLoadState("load");
 
         // Select Role
 
@@ -57,9 +58,7 @@ test.describe('Dynamic Salary Insights Tests', () => {
         await page.locator('#idIframe').contentFrame().getByRole('button', { name: 'Search', exact: true }).click();
 
       });
-
-
-    }
+     }
   });
 });
 
