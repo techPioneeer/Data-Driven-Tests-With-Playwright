@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, } from '@playwright/test';
 // import * as fs from 'fs';
 // import * as path from 'path';
 import axios from 'axios';
@@ -27,14 +27,16 @@ test.describe('Dynamic Salary Insights Tests', () => {
   });
   test('Run dynamic tests for all roles', async ({ page }) => {
     for (const { role, seniorty, country, currency } of testData) {
-        await test.step(`Should display correct compensation info for ${role} in ${seniorty} in ${country} in ${currency}`, async () => {
+
+      await test.step(`Should display correct compensation info for ${role} in ${seniorty} in ${country} in ${currency}`, async () => {
         await page.goto("https://www.deel.com/pt/salary-insights");
         await page.waitForLoadState("load");
 
         // Select Role
-
+        await page.waitForTimeout(3000); // Waits for 3 seconds
         await page.locator('#idIframe').contentFrame().getByPlaceholder('Select a Role *').fill(role);
         await page.locator('#idIframe').contentFrame().getByRole('listbox', { name: 'Role *' }).click();
+
 
         // Select Level
 
@@ -58,7 +60,7 @@ test.describe('Dynamic Salary Insights Tests', () => {
         await page.locator('#idIframe').contentFrame().getByRole('button', { name: 'Search', exact: true }).click();
 
       });
-     }
+    }
   });
 });
 
