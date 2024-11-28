@@ -23,8 +23,10 @@ test.describe('Dynamic Salary Insights Tests', () => {
 
   test.beforeAll(async () => {
     testData = await fetchTestData();
+    console.log(testData);
 
   });
+
   test('Run dynamic tests for all roles', async ({ page }) => {
     for (const { role, seniorty, country, currency } of testData) {
 
@@ -35,12 +37,11 @@ test.describe('Dynamic Salary Insights Tests', () => {
         // Select Role
         await page.waitForTimeout(3000); // Waits for 3 seconds
         await page.locator('#idIframe').contentFrame().getByPlaceholder('Select a Role *').fill(role);
-        await page.locator('#idIframe').contentFrame().getByRole('listbox', { name: 'Role *' }).click();
+      await page.locator('#idIframe').contentFrame().getByRole('combobox', { name: 'role' }).click();
 
 
         // Select Level
 
-        // await page.locator('#idIframe').contentFrame().getByLabel('Seniorty Level *').click();
         await page.locator('#idIframe').contentFrame().getByRole('combobox', { name: 'Seniorty Level *' }).fill(seniorty);
         await page.locator('#idIframe').contentFrame().getByRole('listbox', { name: 'Seniorty Level *' }).click();
 
