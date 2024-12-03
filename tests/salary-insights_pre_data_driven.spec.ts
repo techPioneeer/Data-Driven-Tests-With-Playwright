@@ -2,6 +2,7 @@ import { test, expect, } from '@playwright/test';
 // import * as fs from 'fs';
 // import * as path from 'path';
 import axios from 'axios';
+import { Console } from 'console';
 
 // Define the type for the test data
 interface TestData {
@@ -26,6 +27,7 @@ test.describe('Dynamic Salary Insights Tests', () => {
     console.log(testData);
 
   });
+
 
   test('Run dynamic tests for all roles', async ({ page }) => {
     for (const { role, seniorty, country, currency } of testData) {
