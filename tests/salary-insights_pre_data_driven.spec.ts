@@ -20,11 +20,13 @@ async function fetchTestData(): Promise<TestData[]> {
 }
 
 test.describe('Dynamic Salary Insights Tests', () => {
-  let testData: TestData[];
+  let testData
+  // : TestData[];
+
 
   test.beforeAll(async () => {
     testData = await fetchTestData();
-    console.log(testData);
+    // console.log(testData);
 
   });
 
