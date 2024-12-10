@@ -13,7 +13,8 @@ interface TestData {
 
 // Load test data from JSON file
 const testDataPath = path.resolve(__dirname, 'data', './salary_insights.json');
-let salaryTestData: TestData[];
+let salaryTestData
+// : TestData[];
 
 try {
   const rawData = fs.readFileSync(testDataPath, "utf8");
