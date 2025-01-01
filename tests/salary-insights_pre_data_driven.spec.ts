@@ -30,6 +30,8 @@ test.describe('Salary Insights Tests Naive', () => {
     // salaryTestData.forEach((data) => {
         test(`Should display correct compensation info for ${role} in ${seniorty} in ${country} in ${currency}`, async ({ page }) => {
             await page.goto("https://www.deel.com/pt/salary-insights");
+            await page.waitForLoadState("load");
+
 
             // Select Role
 
