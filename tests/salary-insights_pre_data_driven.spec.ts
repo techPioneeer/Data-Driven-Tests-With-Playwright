@@ -28,32 +28,37 @@ try {
 test.describe('Salary Insights Tests Naive', () => {
     salaryTestData.forEach(({ role, seniorty, country, currency }) => {
     // salaryTestData.forEach((data) => {
+      test.use({
+        viewport: { width: 940, height: 1080 }, // Set the window size for this test
+      });
         test(`Should display correct compensation info for ${role} in ${seniorty} in ${country} in ${currency}`, async ({ page }) => {
-            await page.goto("https://www.deel.com/pt/salary-insights");
+            await page.goto("https://www.deel.com/salary-insights/?utm_source=global-hiring-toolkit");
             await page.waitForLoadState("load");
+
+            await page.waitForTimeout(15000);
+            await page.locator('#idIframe').contentFrame().getByLabel('For one role and country').waitFor();
+            await page.locator('#idIframe').contentFrame().getByLabel('For one role and country').check();
 
 
             // Select Role
 
-            await page.locator('#idIframe').contentFrame().getByPlaceholder('Select a Role *').fill(role);
+            await page.locator('#idIframe').contentFrame().getByRole('combobox', { name: 'Role *' }).fill(role);
             await page.locator('#idIframe').contentFrame().getByRole('listbox', { name: 'Role *' }).click();
 
-            // Select Level
-
-            // await page.locator('#idIframe').contentFrame().getByLabel('Seniorty Level *').click();
-            await page.locator('#idIframe').contentFrame().getByRole('combobox', { name: 'Seniorty Level *' }).fill(seniorty);
-            await page.locator('#idIframe').contentFrame().getByRole('listbox', { name: 'Seniorty Level *' }).click();
+            // Select Seniority Level
+            await page.locator('#idIframe').contentFrame().getByLabel('Seniority Level *').fill(seniorty);
+            await page.locator('#idIframe').contentFrame().getByRole('listbox', { name: 'Seniority Level *' }).click();
 
             
             // Select Country   
 
-            await page.locator('#idIframe').contentFrame().getByPlaceholder('Country *').fill(country);
-            await page.locator('#idIframe').contentFrame().getByRole('listbox', { name: 'Country *' }).locator('div').nth(3).click();
+
+            await page.locator('#idIframe').contentFrame().getByLabel('Country *').fill(country);
+            await page.locator('#idIframe').contentFrame().getByRole('combobox', { name: 'Country *' }).click();
 
             // Select Currency
-
-            await page.locator('#idIframe').contentFrame().getByRole('combobox', { name: 'Currency' }).fill(currency);
-            await page.locator('#idIframe').contentFrame().getByRole('listbox', { name: 'Currency' }).locator('div').nth(1).click();
+            await page.locator('#idIframe').contentFrame().getByLabel('Currency *').fill(currency);
+            await page.locator('#idIframe').contentFrame().getByRole('combobox', { name: 'Currency *' }).click();
             // getByText('United States').click();
 
             // Click Search
