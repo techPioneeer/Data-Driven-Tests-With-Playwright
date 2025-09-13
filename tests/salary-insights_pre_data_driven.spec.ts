@@ -63,6 +63,7 @@ test.describe('Salary Insights Tests Naive', () => {
 
             // Click Search
             await page.locator('#idIframe').contentFrame().getByRole('button', { name: 'Search', exact: true }).click();
+            await page.waitForTimeout(3000);
 
         });
         
