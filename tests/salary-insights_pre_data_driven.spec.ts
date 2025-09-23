@@ -38,6 +38,7 @@ test.describe('Salary Insights Tests Naive', () => {
             await page.waitForTimeout(15000);
             await page.locator('#idIframe').contentFrame().getByLabel('For one role and country').waitFor();
             await page.locator('#idIframe').contentFrame().getByLabel('For one role and country').check();
+            
 
 
             // Select Role
@@ -65,10 +66,14 @@ test.describe('Salary Insights Tests Naive', () => {
             await page.locator('#idIframe').contentFrame().getByRole('button', { name: 'Search', exact: true }).click();
             await page.waitForTimeout(3000);
 
+            await page.close();
+
         });
+        
         
 
     });
+    
 
 });
 

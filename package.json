@@ -8,7 +8,20 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "@playwright/test": "^1.47.2",
+    "@playwright/test": "^1.55.0",
     "@types/node": "^22.7.0"
+  },
+  "dependencies": {
+    "@playwright/mcp": "^0.0.39"
+  },
+
+  "mcpServers": {
+    "playwright-extension": {
+      "command": "npx",
+      "args": [
+        "@playwright/mcp@latest",
+        "--extension"
+      ]
+    }
   }
 }
