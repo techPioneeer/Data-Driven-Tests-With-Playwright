@@ -14,6 +14,7 @@ interface TestData {
 // Load test data from JSON file
 const testDataPath = path.resolve(__dirname, 'data', './salary_insights.json');
 let salaryTestData
+// : TestData[];
 
 try {
   const rawData = fs.readFileSync(testDataPath, "utf8");
@@ -26,12 +27,13 @@ try {
 
 test.describe('Salary Insights Tests Naive', () => {
     salaryTestData.forEach(({ role, seniorty, country, currency }) => {
-    
+    // salaryTestData.forEach((data) => {
       test.use({
         viewport: { width: 940, height: 1080 }, // Set the window size for this test
       });
-      
+
         test(`Should display correct compensation info for ${role} in ${seniorty} in ${country} in ${currency}`, async ({ page }) => {
+          
             await page.goto("https://www.deel.com/salary-insights/?utm_source=global-hiring-toolkit");
             await page.waitForLoadState("load");
 
@@ -70,10 +72,10 @@ test.describe('Salary Insights Tests Naive', () => {
 
         });
         
-        
+      });
 
     });
     
 
-});
+
 
