@@ -76,6 +76,3 @@ test.describe('Salary Insights Tests Naive', () => {
 
     });
     
-
-
-
